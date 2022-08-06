@@ -1,0 +1,10 @@
+2022-08-05 20:35:46,510 lenovo pacs-dev.jar[16844] INFO  [io.quarkus] (Quarkus Main Thread) pacs 1.0. on JVM (powered by Quarkus 2.10.3.Final) started in 5.972s. Listening on: http://localhost:8080
+2022-08-05 20:35:46,511 lenovo pacs-dev.jar[16844] INFO  [io.quarkus] (Quarkus Main Thread) Profile dev activated. Live Coding activated.
+2022-08-05 20:35:46,512 lenovo pacs-dev.jar[16844] INFO  [io.quarkus] (Quarkus Main Thread) Installed features: [agroal, cdi, hibernate-orm, hibernate-orm-panache, hibernate-validator, jdbc-h2, narayana-jta, rest-client, rest-client-jackson, resteasy, resteasy-jackson, resteasy-jsonb, resteasy-multipart, resteasy-mutiny, smallrye-context-propagation, smallrye-openapi, swagger-ui, vertx]
+2022-08-05 20:35:50,819 lenovo pacs-dev.jar[16844] INFO  [cna.med.pac.api.PatientUI] (executor-thread-0) Get List of Patients
+2022-08-05 20:35:52,177 lenovo pacs-dev.jar[16844] INFO  [io.qua.htt.access-log] (executor-thread-0) 127.0.0.1 - - 05/Aug/2022:20:35:52 +0200 "GET /patient HTTP/1.1" 200 371
+2022-08-05 20:35:54,996 lenovo pacs-dev.jar[16844] INFO  [cna.med.pac.api.PatientUI] (executor-thread-0) Get List of Patients
+2022-08-05 20:35:55,004 lenovo pacs-dev.jar[16844] INFO  [io.qua.htt.access-log] (executor-thread-0) 127.0.0.1 - - 05/Aug/2022:20:35:55 +0200 "GET /patient HTTP/1.1" 200 371
+2022-08-05 20:38:22,471 lenovo pacs-dev.jar[16844] INFO  [cna.med.pac.api.PatientUI] (executor-thread-0) Get List of Patients
+2022-08-05 20:38:22,479 lenovo pacs-dev.jar[16844] INFO  [io.qua.htt.access-log] (executor-thread-0) 127.0.0.1 - - 05/Aug/2022:20:38:22 +0200 "GET /patient HTTP/1.1" 200 371
+2022-08-05 20:40:10,414 lenovo pacs-dev.jar[16844] INFO  [io.quarkus] (Shutdown thread) pacs stopped in 0.030s
