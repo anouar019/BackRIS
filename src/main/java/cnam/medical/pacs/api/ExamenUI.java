@@ -2,6 +2,7 @@ package cnam.medical.pacs.api;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -18,9 +19,12 @@ import javax.ws.rs.core.Response.Status;
 
 import cnam.medical.pacs.domain.dao.ExamenRepo;
 import cnam.medical.pacs.domain.model.Examen;
+import io.quarkus.security.Authenticated;
+
 import org.jboss.logging.Logger;
 
 @Path("/examen")
+@Authenticated
 public class ExamenUI {
 
 
@@ -52,6 +56,7 @@ public class ExamenUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response saveExamen(Examen examen) {
 
         LOGGER.info("Post Examen");
@@ -73,6 +78,7 @@ public class ExamenUI {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response updateExamen(@PathParam("id") Long id, Examen examen){
 
         LOGGER.info("Update Examen id: "+id);
@@ -103,6 +109,7 @@ public class ExamenUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response deleteExamen(@PathParam("id") Long id) {
 
         LOGGER.info("Delete Examen id: "+id);

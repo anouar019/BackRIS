@@ -6,6 +6,7 @@ import java.util.List;
 
 import org.jboss.logging.Logger;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -24,8 +25,10 @@ import cnam.medical.pacs.domain.model.Document;
 import cnam.medical.pacs.domain.model.Patient;
 import cnam.medical.pacs.domain.model.Document.TYPEDOCUMENT;
 import cnam.medical.pacs.exception.WrongArg;
+import io.quarkus.security.Authenticated;
 
 @Path("document")
+@Authenticated
 public class DocumentUI {
 
     private Logger LOGGER = Logger.getLogger(DocumentUI.class);
@@ -54,6 +57,7 @@ public class DocumentUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response saveDocument(Document document) {
 
         LOGGER.info("Post Document " + document.id);
@@ -150,6 +154,7 @@ public class DocumentUI {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response updateDocument(@PathParam("id") Long id, Document document) {
 
         LOGGER.info("Update Docuemetn id: " + id);
@@ -174,6 +179,7 @@ public class DocumentUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response deleteDocument(@PathParam("id") Long id) {
 
         LOGGER.info("Delete Docuemnt id: " + id);

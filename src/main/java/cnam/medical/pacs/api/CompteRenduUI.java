@@ -2,6 +2,7 @@ package cnam.medical.pacs.api;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 
 import javax.transaction.Transactional;
@@ -19,6 +20,7 @@ import cnam.medical.pacs.domain.dao.CompteRenduRepo;
 import cnam.medical.pacs.domain.model.CompteRendu;
 import cnam.medical.pacs.domain.model.Examen;
 import cnam.medical.pacs.domain.model.CompteRendu.Etat;
+import io.quarkus.security.Authenticated;
 
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
@@ -27,6 +29,7 @@ import javax.ws.rs.core.Response.Status;
 import org.jboss.logging.Logger;
 
 @Path("/compterendu")
+@Authenticated
 public class CompteRenduUI {
 
     private Logger LOGGER = Logger.getLogger(CompteRenduUI.class);
@@ -56,6 +59,7 @@ public class CompteRenduUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed({"Secretaire","Radiologue"})
     public Response saveCompteRendu(@Valid CompteRendu compteRendu) {
 
         LOGGER.info("POST new CR");
@@ -74,6 +78,7 @@ public class CompteRenduUI {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed({"Secretaire","Radiologue"})
     public Response updateCompteRendu(@PathParam("id") Long id, CompteRendu compteRendu) {
 
         LOGGER.info("Update CR id: " + id);
@@ -103,6 +108,7 @@ public class CompteRenduUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed({"Secretaire","Radiologue"})
     public Response deleteCompteRendu(@PathParam("id") Long id) {
 
         LOGGER.info("Delete CR id: " + id);
@@ -193,7 +199,7 @@ public class CompteRenduUI {
 
     
     /** 
-     * @param @PathParam("secretaireLogin"
+     * @param @PathParam("secretaireLogin")
      * @return List<CompteRendu>
      */
     @GET

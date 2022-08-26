@@ -4,6 +4,7 @@ import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -24,8 +25,10 @@ import cnam.medical.pacs.domain.dao.PatientRepo;
 import cnam.medical.pacs.domain.model.Patient;
 import cnam.medical.pacs.domain.model.Patient.Sex;
 import cnam.medical.pacs.exception.WrongArg;
+import io.quarkus.security.Authenticated;
 
 @Path("/patient")
+@Authenticated
 public class PatientUI {
 
     private Logger LOGGER = Logger.getLogger(PatientUI.class);
@@ -146,6 +149,7 @@ public class PatientUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response savePatient(Patient patient) {
 
         LOGGER.info("Post Patient");
@@ -165,6 +169,7 @@ public class PatientUI {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response updatePatient(@PathParam("id") Long id, Patient patient){
 
         LOGGER.info("Update Patient id: "+id);
@@ -189,6 +194,7 @@ public class PatientUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("Secretaire")
     public Response deletePatient(@PathParam("id") Long id) {
 
         LOGGER.info("Delete Patient id: "+id);

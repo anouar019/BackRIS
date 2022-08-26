@@ -2,6 +2,7 @@ package cnam.medical.pacs.api;
 
 import java.util.List;
 
+import javax.annotation.security.RolesAllowed;
 import javax.inject.Inject;
 import javax.transaction.Transactional;
 import javax.ws.rs.Consumes;
@@ -22,10 +23,12 @@ import cnam.medical.pacs.domain.model.Protocole.Injection;
 import cnam.medical.pacs.domain.model.Protocole.Membre;
 import cnam.medical.pacs.domain.model.Protocole.Technique;
 import cnam.medical.pacs.domain.model.Protocole.Type;
+import io.quarkus.security.Authenticated;
 
 import org.jboss.logging.Logger;
 
 @Path("/protocole")
+@Authenticated
 public class ProtocoleUI {
 
     private Logger LOGGER = Logger.getLogger(ProtocoleUI.class);
@@ -57,6 +60,7 @@ public class ProtocoleUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Consumes(MediaType.APPLICATION_JSON)
     @Transactional
+    @RolesAllowed("ManipulateurReferent")
     public Response saveProtocole(Protocole protocole){
 
 
@@ -78,6 +82,7 @@ public class ProtocoleUI {
     @Consumes(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("ManipulateurReferent")
     public Response updateProtocole(@PathParam("id") Long id, Protocole protocole){
 
         LOGGER.info("Update Protocole id: "+id);
@@ -107,6 +112,7 @@ public class ProtocoleUI {
     @Produces(MediaType.APPLICATION_JSON)
     @Path("/{id}")
     @Transactional
+    @RolesAllowed("ManipulateurReferent")
     public Response deleteProtocole(@PathParam("id") Long id) {
 
 
